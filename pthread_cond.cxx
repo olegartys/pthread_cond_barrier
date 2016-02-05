@@ -23,6 +23,7 @@
 
 
 #include <iostream>
+#include <fstream>
 
 #include <unistd.h>
 #include <pthread.h>
@@ -48,6 +49,10 @@ void* f1(void*) {
 
 int main(int argc, char **argv)
 {
+	std::ofstream file("/home/box/main.pid");
+	file << getpid();
+	file.close();
+	
 	pthread_barrier_init(&bp, NULL, 1);
 	
 	pthread_t t, t1;
